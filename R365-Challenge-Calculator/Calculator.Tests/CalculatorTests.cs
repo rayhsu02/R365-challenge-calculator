@@ -110,5 +110,19 @@ namespace Caculator.Tests
             //Assert
             Assert.AreEqual(expect, result);
         }
+
+        [TestMethod]
+        public void Add_RemoveMaxConstrainNumbers_Return78()
+        {
+            //Arrange
+            string input = "1,2,3,4,5,6,7,8,9,10,11,12";
+
+            //Act
+            var result = _calculator.Add(input);
+            int expect = 78;
+
+            //Assert
+            Assert.AreEqual(expect, result);
+        }
     }
 }
