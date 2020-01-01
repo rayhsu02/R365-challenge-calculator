@@ -6,4 +6,8 @@
     <RootNamespace>R365_Calculator_Console</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CalculatorService\CalculatorService.csproj" />
+  </ItemGroup>
+
 </Project>
