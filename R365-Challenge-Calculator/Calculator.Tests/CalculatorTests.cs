@@ -42,19 +42,19 @@ namespace Caculator.Tests
             Assert.AreEqual(expect, result);
         }
 
-        [TestMethod]
-        public void Add_4_minus_3_Return1()
-        {
-            //Arrange
-            string input = "4,-3";
+        //[TestMethod]
+        //public void Add_4_minus_3_Return1()
+        //{
+        //    //Arrange
+        //    string input = "4,-3";
 
-            //Act
-            var result = _calculator.Add(input);
-            int expect = 1;
+        //    //Act
+        //    var result = _calculator.Add(input);
+        //    int expect = 1;
 
-            //Assert
-            Assert.AreEqual(expect, result);
-        }
+        //    //Assert
+        //    Assert.AreEqual(expect, result);
+        //}
 
         //[TestMethod]
         //public void Add_ThrowAnExceptionWhenMoreThanTwoNumbers()
@@ -137,6 +137,17 @@ namespace Caculator.Tests
 
             //Assert
             Assert.AreEqual(expect, result);
+        }
+
+        [TestMethod]
+        public void Add_DenyNegativeNumbers_ReturnException()
+        {
+            //Arrange
+            string input = "-1,-3,5";
+            
+            //Act , Assert
+            Assert.ThrowsException<Exception>(() => _calculator.Add(input));
+
         }
     }
 }
