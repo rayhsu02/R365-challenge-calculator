@@ -149,5 +149,19 @@ namespace Caculator.Tests
             Assert.ThrowsException<Exception>(() => _calculator.Add(input));
 
         }
+
+        [TestMethod]
+        public void Add_GranterThan1000_Return8()
+        {
+            //Arrange
+            string input = "2,1001,6";
+
+            //Act
+            var result = _calculator.Add(input);
+            int expect = 8;
+
+            //Assert
+            Assert.AreEqual(expect, result);
+        }
     }
 }

@@ -21,6 +21,8 @@ namespace CalculatorService
                     NegtiveList.Add(num);
                 }
 
+                if (i > 1000) i = 0;
+
                 total += i;
             }
 
