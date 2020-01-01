@@ -124,5 +124,19 @@ namespace Caculator.Tests
             //Assert
             Assert.AreEqual(expect, result);
         }
+
+        [TestMethod]
+        public void Add_NewLineDelimiter_Return6()
+        {
+            //Arrange
+            string input = "1\n2,3";
+
+            //Act
+            var result = _calculator.Add(input);
+            int expect = 6;
+
+            //Assert
+            Assert.AreEqual(expect, result);
+        }
     }
 }
