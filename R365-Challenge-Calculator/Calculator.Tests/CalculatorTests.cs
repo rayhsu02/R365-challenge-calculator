@@ -56,18 +56,18 @@ namespace Caculator.Tests
             Assert.AreEqual(expect, result);
         }
 
-        [TestMethod]
-        public void Add_ThrowAnExceptionWhenMoreThanTwoNumbers()
-        {
-            //Arrange
-            string input = "4,3,7";
+        //[TestMethod]
+        //public void Add_ThrowAnExceptionWhenMoreThanTwoNumbers()
+        //{
+        //    //Arrange
+        //    string input = "4,3,7";
 
-            //Act
+        //    //Act
 
-            //Assert
-            Assert.ThrowsException<Exception>(() => _calculator.Add(input));
+        //    //Assert
+        //    Assert.ThrowsException<Exception>(() => _calculator.Add(input));
 
-        }
+        //}
 
         [TestMethod]
         public void Add_EmptyInputConvertToZero()
