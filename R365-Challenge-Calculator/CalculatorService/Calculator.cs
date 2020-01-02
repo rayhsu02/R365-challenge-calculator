@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Text;
 
 namespace CalculatorService
 {
@@ -8,11 +9,18 @@ namespace CalculatorService
         public int Add(string inputStr)
         {
             bool HasCustomDelimiter = inputStr.Contains("//");
+            bool HasMultiCustDelimiter = inputStr.Contains("[");
+            bool IsSingleCharDelimiter = HasCustomDelimiter == true && HasMultiCustDelimiter == false;
+
 
             if (HasCustomDelimiter)
             {
                 inputStr = inputStr.Replace("//", "");
-                inputStr = ReplaceSingleDelimiter(inputStr);
+
+                if (IsSingleCharDelimiter)
+                    inputStr = ReplaceSingleDelimiter(inputStr);
+                else
+                    inputStr = ReplaceMultiCustDelimiters(inputStr);
             }
 
             inputStr = inputStr.Replace('\n', ',');
@@ -47,6 +55,44 @@ namespace CalculatorService
             char delimiter = inputStr[0];
             inputStr = inputStr.Replace(delimiter, ',');
             return inputStr;
+        }
+
+        private string ReplaceMultiCustDelimiters(string inputStr)
+        {
+            string[] delimiters = GetDeliomiters(inputStr);
+            foreach (string s in delimiters)
+            {
+                inputStr = inputStr.Replace(s, ",");
+            }
+
+            return inputStr;
+        }
+
+        private string[] GetDeliomiters(string inputStr)
+        {
+            ArrayList list = new ArrayList();
+            Stack stack = new Stack();
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char c in inputStr)
+            {
+                if (c == '[')
+                {
+                    stack.Push(c);
+                }
+                else if (c == ']')
+                {
+                    stack.Pop();
+                    list.Add(sb.ToString());
+                    sb.Clear();
+                }
+                else
+                {
+                    if (stack.Count != 0) sb.Append(c);
+                }
+            }
+
+            return (string[])list.ToArray(typeof(string));
         }
     }
 }

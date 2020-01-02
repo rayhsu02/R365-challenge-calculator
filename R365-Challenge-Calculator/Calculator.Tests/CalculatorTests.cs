@@ -191,5 +191,21 @@ namespace Caculator.Tests
             //Assert
             Assert.AreEqual(expect, result);
         }
+
+        [TestMethod]
+        public void Add_AnyLengthCustomDelimeter_Return66()
+        {
+            //Arrange
+            string input = "//[***]\n11***22***33";
+
+            //Act
+            var result = _calculator.Add(input);
+            int expect = 66;
+
+            //Assert
+            Assert.AreEqual(expect, result);
+        }
+
+       
     }
 }
