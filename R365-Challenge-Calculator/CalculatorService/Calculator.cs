@@ -8,19 +8,9 @@ namespace CalculatorService
     {
         public int Add(string inputStr)
         {
-            bool HasCustomDelimiter = inputStr.Contains("//");
-            bool HasMultiCustDelimiter = inputStr.Contains("[");
-            bool IsSingleCharDelimiter = HasCustomDelimiter == true && HasMultiCustDelimiter == false;
-
-
-            if (HasCustomDelimiter)
+            if (inputStr.Contains("//"))
             {
-                inputStr = inputStr.Replace("//", "");
-
-                if (IsSingleCharDelimiter)
-                    inputStr = ReplaceSingleDelimiter(inputStr);
-                else
-                    inputStr = ReplaceMultiCustDelimiters(inputStr);
+                inputStr = ProcessCustomDelimiters(inputStr);
             }
 
             inputStr = inputStr.Replace('\n', ',');
@@ -48,6 +38,19 @@ namespace CalculatorService
             }
 
             return total;
+        }
+
+        private string ProcessCustomDelimiters(string inputStr)
+        {
+            bool IsSingleCharDelimiter = !inputStr.Contains("[");
+            inputStr = inputStr.Replace("//", "");
+
+            if (IsSingleCharDelimiter)
+                inputStr = ReplaceSingleDelimiter(inputStr);
+            else
+                inputStr = ReplaceMultiCustDelimiters(inputStr);
+           
+            return inputStr;
         }
 
         private static string ReplaceSingleDelimiter(string inputStr)
