@@ -206,6 +206,20 @@ namespace Caculator.Tests
             Assert.AreEqual(expect, result);
         }
 
-       
+        [TestMethod]
+        public void Add_MultiCustomDelimeter_Return110()
+        {
+            //Arrange
+            string input = "//[*][!!][r9r]\n11r9r22*hh*33!!44";
+
+            //Act
+            var result = _calculator.Add(input);
+            int expect = 110;
+
+            //Assert
+            Assert.AreEqual(expect, result);
+        }
+
+
     }
 }
