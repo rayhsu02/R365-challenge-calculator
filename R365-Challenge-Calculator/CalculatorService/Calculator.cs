@@ -7,6 +7,14 @@ namespace CalculatorService
     {
         public int Add(string inputStr)
         {
+            bool HasCustomDelimiter = inputStr.Contains("//");
+
+            if (HasCustomDelimiter)
+            {
+                inputStr = inputStr.Replace("//", "");
+                inputStr = ReplaceSingleDelimiter(inputStr);
+            }
+
             inputStr = inputStr.Replace('\n', ',');
             string[] numbers = inputStr.Split(',');
             int total = 0;
@@ -32,6 +40,13 @@ namespace CalculatorService
             }
 
             return total;
+        }
+
+        private static string ReplaceSingleDelimiter(string inputStr)
+        {
+            char delimiter = inputStr[0];
+            inputStr = inputStr.Replace(delimiter, ',');
+            return inputStr;
         }
     }
 }

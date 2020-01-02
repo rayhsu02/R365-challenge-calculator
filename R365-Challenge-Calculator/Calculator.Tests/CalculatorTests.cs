@@ -163,5 +163,33 @@ namespace Caculator.Tests
             //Assert
             Assert.AreEqual(expect, result);
         }
+
+        [TestMethod]
+        public void Add_SingleCustomDelimeter_Return102()
+        {
+            //Arrange
+            string input = "//,\n2,ff,100";
+
+            //Act
+            var result = _calculator.Add(input);
+            int expect = 102;
+
+            //Assert
+            Assert.AreEqual(expect, result);
+        }
+
+        [TestMethod]
+        public void Add_SingleCustomDelimeter_Return7()
+        {
+            //Arrange
+            string input = "//#\n2#5";
+
+            //Act
+            var result = _calculator.Add(input);
+            int expect = 7;
+
+            //Assert
+            Assert.AreEqual(expect, result);
+        }
     }
 }
